@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+cd hospital_data
+
 # Loop indefinitely until a valid selection is made
 while true; do
   # Display the menu
@@ -15,8 +18,23 @@ while true; do
   case $choice in
     1)
       echo "You selected file name: heart_rate_log.log"
+      #code to move the selected log_file to it's designated archive folder
+      mv active_logs/heart_rate.log archived_logs/heart_data_archive
+      #moving now to the heart_data_archive directory where the log file archiving takes place
+      cd archived_logs/heart_data_archive
+      #rename the file before archiving
+      
+      current_date=$(date +"%F_%H-%M-%S")
+      arch_file="heart_rate_${current_date}.log"
+      mv heart_rate.log "${arch_file}"
+
+      #archiving the file 
+      echo "Archiving heart_rate.log........"
+      tar -cf "${arch_file}.tar" "${arch_file}"
+      echo "Successfully archived to $(pwd)/${arch_file}"
       break  # Exit the loop on valid selection
       ;;
+
     2)
       echo "You selected file name: temperature_log.log"
       break
