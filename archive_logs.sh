@@ -15,7 +15,7 @@ while true; do
   read -p "Enter your choice: " choice
 
   # Use a 'case' statement to handle the user's choice
-  case $choice in
+  case $choice
     1)
       echo "You selected file name: heart_rate_log.log"
       #code to move the selected log_file to it's designated archive folder
@@ -31,7 +31,13 @@ while true; do
       #archiving the file 
       echo "Archiving heart_rate.log........"
       tar -cf "${arch_file}.tar" "${arch_file}"
-      echo "Successfully archived to $(pwd)/${arch_file}"
+      echo "Successfully archived to $(pwd)/${arch_file}"      
+      #code to move out from the heart_data_archive
+      cd ../../active_logs
+      touch heart_rate.log #creates the new heart_rate.log file
+
+
+
       break  # Exit the loop on valid selection
       ;;
 
