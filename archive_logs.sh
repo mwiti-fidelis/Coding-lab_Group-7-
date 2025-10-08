@@ -15,7 +15,7 @@ while true; do
   read -p "Enter your choice: " choice
 
   # Use a 'case' statement to handle the user's choice
-  case $choice
+  case $choice in
     1)
       echo "You selected file name: heart_rate_log.log"
       #code to move the selected log_file to it's designated archive folder
